@@ -7,8 +7,8 @@ echo "✓ Successfully started"
 
 
 echo "⟳ Downloading core.jar and stats.jar..."
-curl https://github.com/TheRedSRT4/JVLIA_TTV_ATTENDANCE/releases/download/latest/core.jar
-curl https://github.com/TheRedSRT4/JVLIA_TTV_ATTENDANCE/releases/download/latest/stats.jar
+curl -L -o /home/container/core.jar https://github.com/TheRedSRT4/JVLIA_TTV_ATTENDANCE/releases/download/latest/core.jar
+curl -L -o /home/container/stats.jar https://github.com/TheRedSRT4/JVLIA_TTV_ATTENDANCE/releases/download/latest/stats.jar
 echo "⟳ Starting Core.jar..."
 echo "✓ Successfully started"
 java -jar core.jar
