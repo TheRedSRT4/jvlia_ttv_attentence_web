@@ -1,0 +1,42 @@
+{
+    "_comment": "DO NOT EDIT: FILE GENERATED AUTOMATICALLY BY PTERODACTYL PANEL - PTERODACTYL.IO",
+    "meta": {
+        "version": "PTDL_v2",
+        "update_url": null
+    },
+    "exported_at": "2022-10-30T14:59:08-04:00",
+    "name": "TTV Attendance Web Egg (JVLIA)",
+    "author": "admin@theredsrt4.com",
+    "description": null,
+    "features": null,
+    "docker_images": {
+        "ghcr.io\/theredsrt4\/ttv_attendence:jvlia": "ghcr.io\/theredsrt4\/ttv_attendence:jvlia"
+    },
+    "file_denylist": [],
+    "startup": "{{STARTUP_CMD}}; if [[ ! -z ${COMPOSER_MODULES} ]]; then composer require ${COMPOSER_MODULES} --working-dir=\\\/home\\\/containe\\r\\nr\\\/webroot; fi;",
+    "config": {
+        "files": "{\r\n    \"nginx\/conf.d\/default.conf\": {\r\n        \"parser\": \"file\",\r\n        \"find\": {\r\n            \"    listen \": \"    listen {{server.build.default.port}};\"\r\n        }\r\n    }\r\n}",
+        "startup": "{\r\n    \"done\": \"\",\r\n    \"userInteraction\": []\r\n}",
+        "logs": "{\r\n    \"custom\": false,\r\n    \"location\": \"logs\/latest.log\"\r\n}",
+        "stop": "^C"
+    },
+    "scripts": {
+        "installation": {
+            "script": "#!\/bin\/ash\r\ncd \/mnt\/server\r\napk --update add git\r\n\r\n# cloning repo with nginx and php files\r\ngit clone https:\/\/github.com\/TheRedSRT4\/jvlia_ttv_attentence_web .\/temp\r\n\r\ncp -r .\/temp\/nginx \/mnt\/server\/\r\ncp -r .\/temp\/jvlia \/mnt\/server\/\r\ncp .\/temp\/start.sh \/mnt\/server\/\r\nchmod +x \/mnt\/server\/start.sh\r\nrm -rf .\/temp\r\nmkdir \/mnt\/server\/tmp\r\nmkdir \/mnt\/server\/logs\r\necho -e \"Install complete!\"\r\nfi",
+            "container": "alpine:latest",
+            "entrypoint": "ash"
+        }
+    },
+    "variables": [
+        {
+            "name": "Startup Command",
+            "description": "The command to startup the egg\r\n(Do not change if you do not know what you are doing!)",
+            "env_variable": "STARTUP_CMD",
+            "default_value": ".\/start.sh",
+            "user_viewable": true,
+            "user_editable": true,
+            "rules": "present",
+            "field_type": "text"
+        }
+    ]
+}
