@@ -1,6 +1,6 @@
 FROM php:8.2-fpm-alpine3.16
 
-RUN apk --update --no-cache add curl ca-certificates nginx openjdk11
+RUN apk --update --no-cache add curl ca-certificates nginx openjdk11 php-pgsql
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
 
 USER container
