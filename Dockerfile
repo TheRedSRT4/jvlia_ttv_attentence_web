@@ -1,4 +1,4 @@
-FROM 8.2-fpm-alpine3.16
+FROM php:8.2-fpm-alpine3.16
 
 RUN apk --update --no-cache add curl ca-certificates nginx openjdk11
 COPY --from=composer:latest  /usr/bin/composer /usr/bin/composer
